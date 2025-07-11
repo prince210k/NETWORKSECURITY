@@ -2,3 +2,4 @@ venv
 .env
 template.py
 finalnetworksecurity.pdf
+auto_schema.py 
