@@ -1,4 +1,3 @@
-
 ## To check if there is successfull connection with the mongo db atlas 
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi

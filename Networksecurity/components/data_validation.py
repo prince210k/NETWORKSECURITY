@@ -60,6 +60,8 @@ class DataValidation:
             dir_path = os.path.dirname(drift_report_file_path)
             os.makedirs(dir_path,exist_ok=True)
             write_yaml_file(drift_report_file_path,report)
+            
+            return status
         except Exception as e:
             raise NetworkSecuirtyException(e,sys)
         
@@ -84,8 +86,8 @@ class DataValidation:
             
             ## Checking Data Drift
             
-            status = self.detect_dataset_drift(train_df,test_df) 
-            if status:
+            drift_status = self.detect_dataset_drift(train_df,test_df) 
+            if drift_status:
                 print("No data drift detected.")
             else:
                 print("Data drift detected!")
@@ -97,7 +99,7 @@ class DataValidation:
             test_df.to_csv(self.data_validation_config.valid_test_file_path,index=False,header=True)
             
             data_validation_artifact = DataValidationArtifact(
-                status,
+                drift_status,
                 train_data_file_path,
                 test_data_file_path,
                 None,None,
