@@ -1,5 +1,7 @@
 from Networksecurity.exception.exception import NetworkSecuirtyException
 from Networksecurity.logging.logger import logger
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import r2_score
 import sys 
 import yaml
 import dill 
@@ -34,8 +36,14 @@ def save_numpy_array_data(file_path: str , array: np.array):
             np.save(file_obj,array)
     except Exception as e:
         raise NetworkSecuirtyException(e,sys) 
-                
-                
+    
+def load_numpy_array(file_path: str) -> np.array:
+    try:
+        with open(file_path,'rb') as obj:
+            return np.load(obj)
+    except Exception as e:
+        raise NetworkSecuirtyException(e,sys)
+    
 def save_object(file_path: str, object: object):
     try:
         dir_path = os.path.dirname(file_path)
@@ -44,3 +52,44 @@ def save_object(file_path: str, object: object):
             pickle.dump(object,file_obj)
     except Exception as e:
         raise NetworkSecuirtyException(e,sys) 
+
+def load_object(file_path: str,):
+    try:
+        if not os.path.exists(file_path):
+            raise Exception(f"The file :{file_path} is invalid")
+        else:
+            with open(file_path,'rb') as file_obj:
+                print(file_obj)
+                return pickle.load(file_obj)
+    except Exception as e:
+        raise NetworkSecuirtyException(e,sys)
+    
+def evaluate_model(X_train, y_train, X_test, y_test, models, params):
+    try:
+        report = {}
+        best_score = float('-inf')
+        best_model = None
+
+        for name in models.keys():
+            model = models[name]
+            param = params.get(name, {})
+
+            gs = GridSearchCV(model, param, cv=3)
+            gs.fit(X_train, y_train)
+
+            model.set_params(**gs.best_params_)
+            model.fit(X_train, y_train)
+
+            y_test_pred = model.predict(X_test)
+            test_model_score = r2_score(y_test, y_test_pred)
+
+            report[name] = test_model_score
+
+            if test_model_score > best_score:
+                best_score = test_model_score
+                best_model = model  # Best fitted model with best params
+
+        return report, best_model
+
+    except Exception as e:
+        raise NetworkSecuirtyException(e, sys)

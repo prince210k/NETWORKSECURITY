@@ -16,6 +16,7 @@ TEST_FILE_NAME:str = "test.csv"
 PREPROCESSING_OBJECT_FILE_NAME:str = "preprocessor.pkl"
 
 SCHEMA_FILE_PATH = os.path.join("data_schema","schema.yaml")
+SAVED_MODEL_DIR = os.path.join("saved_models")
 
 ''' 
 Data ingestion ingestion related constants 
@@ -44,9 +45,9 @@ DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = 'report.yaml'
 Data Transformation related constants
 '''
 
-DATA_TRANSFORMATION_DIR_NAME = 'Data_transformation'
-DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR = 'Transformed'
-DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR = 'Transformed_object'
+DATA_TRANSFORMATION_DIR_NAME: str = 'Data_transformation'
+DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR: str = 'Transformed'
+DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR: str = 'Transformed_object'
 
 ## This data is used for knn imputer class to replace nan values, finds nan values and replaces it with avg of k neighbors
 DATA_TRANSFORMATION_IMPUTER_PARAMS: dict= {
@@ -54,3 +55,13 @@ DATA_TRANSFORMATION_IMPUTER_PARAMS: dict= {
     "n_neighbors": 3,
     "weights": "uniform"
 }
+
+
+'''
+Model Training Related constants
+'''
+MODEL_TRAINER_DIR_NAME: str = "Model_trainer"
+TRAINED_MODEL_DIR: str = "trained_model"
+TRAINED_MODEL_NAME: str = "model.pkl"
+EXPECTED_ACCURACY: float = 0.6
+UNDER_OVER_FITTING_THRESHHOLD: int = 0.05
