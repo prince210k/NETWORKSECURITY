@@ -10,7 +10,7 @@ MONGO_DB_URL = os.getenv("MONGO_DB_URL")
 
 import pandas as pd
 import numpy as np 
-from Networksecurity.exception.exception import NetworkSecuirtyException
+from Networksecurity.exception.exception import NetworkSecurityException
 from Networksecurity.logging.logger import logger
 
 class NetworkDataExtract():
@@ -18,7 +18,7 @@ class NetworkDataExtract():
         try:
             pass
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
     
     def csv_to_json(self,file_path):
         try:
@@ -27,7 +27,7 @@ class NetworkDataExtract():
             records = list(json.loads(data.T.to_json()).values()) ##This line converts a Pandas DataFrame into a list of JSON records.
             return records
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
     def insert_to_mongo(self,records,database,collection):
         try:
@@ -40,7 +40,7 @@ class NetworkDataExtract():
             self.collection.insert_many(self.records)
             return len(self.records)
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys) 
+            raise NetworkSecurityException(e,sys) 
         
 if __name__=='__main__':
     File_path = "network_data\phisingData.csv"

@@ -1,6 +1,6 @@
 from Networksecurity.entity.artifacts_entity import DataIngestionArtifact, DataValidationArtifact
 from Networksecurity.entity.config_entity import DataValidationConfig
-from Networksecurity.exception.exception import NetworkSecuirtyException
+from Networksecurity.exception.exception import NetworkSecurityException
 from Networksecurity.consants.training_pipeline import SCHEMA_FILE_PATH
 from Networksecurity.logging.logger import logger
 import sys
@@ -17,14 +17,14 @@ class DataValidation:
             self.data_validation_config = Data_validation_config
             self.schema_config = read_yaml_file(SCHEMA_FILE_PATH)
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys) 
+            raise NetworkSecurityException(e,sys) 
         
     @staticmethod
     def read_data(file_path)->pd.DataFrame:
         try:
             return pd.read_csv(file_path) 
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
     def validate_number_of_columns(self,df:pd.DataFrame)->bool:
         try:
@@ -34,7 +34,7 @@ class DataValidation:
                 return True
             return False
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
     
     def detect_dataset_drift(self,main_df,current_df,threshold=0.05)->bool:
         try:
@@ -63,7 +63,7 @@ class DataValidation:
             
             return status
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
     def initiate_data_validation(self)->DataValidationArtifact:
         try:
@@ -107,4 +107,4 @@ class DataValidation:
             )
             return data_validation_artifact
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)

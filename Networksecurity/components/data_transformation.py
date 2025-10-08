@@ -1,6 +1,6 @@
 import os 
 import sys 
-from Networksecurity.exception.exception import NetworkSecuirtyException
+from Networksecurity.exception.exception import NetworkSecurityException
 from Networksecurity.logging.logger import logger
 import pandas as pd 
 import numpy as np 
@@ -20,14 +20,14 @@ class DataTransformation:
             self.data_transformation_config:DataTransformationConfig = data_transformation_config 
             
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys) 
+            raise NetworkSecurityException(e,sys) 
         
     @staticmethod 
     def read_data(file_path: str) -> pd.DataFrame:
         try:
             return pd.read_csv(file_path)
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys) 
+            raise NetworkSecurityException(e,sys) 
         
     def impute_missing(cls) -> Pipeline:
         try:
@@ -38,7 +38,7 @@ class DataTransformation:
             return processor
             pass
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys) 
+            raise NetworkSecurityException(e,sys) 
         
     def initiate_data_transformation(self) -> DataTransformationArtifact:
         try:
@@ -66,6 +66,8 @@ class DataTransformation:
             save_numpy_array_data(self.data_transformation_config.transformed_test_file_path,test_arr)
             save_object(self.data_transformation_config.transformed_object_file_path,preprocessor)
             
+            save_object("final_model/preprocessor.pkl",preprocessor)
+            
             data_transformation_artifact = DataTransformationArtifact(
              self.data_transformation_config.transformed_object_file_path,
              self.data_transformation_config.transformed_train_file_path,
@@ -74,4 +76,4 @@ class DataTransformation:
             
             return data_transformation_artifact
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys) 
+            raise NetworkSecurityException(e,sys) 

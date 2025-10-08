@@ -1,6 +1,6 @@
 from sklearn.metrics import f1_score,precision_score,recall_score
 from Networksecurity.entity.artifacts_entity import ClassificationMetricArtifact
-from Networksecurity.exception.exception import NetworkSecuirtyException
+from Networksecurity.exception.exception import NetworkSecurityException
 import sys 
 
 def get_classification_report(y_true,y_pred)-> ClassificationMetricArtifact:
@@ -10,4 +10,4 @@ def get_classification_report(y_true,y_pred)-> ClassificationMetricArtifact:
         model_recall = recall_score(y_pred,y_true)
         return ClassificationMetricArtifact(model_f1_score,model_recall,model_precision)
     except Exception as e:
-        raise NetworkSecuirtyException(e,sys)
+        raise NetworkSecurityException(e,sys)

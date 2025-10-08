@@ -1,4 +1,4 @@
-from Networksecurity.exception.exception import NetworkSecuirtyException
+from Networksecurity.exception.exception import NetworkSecurityException
 from Networksecurity.logging.logger import logger
 
 ## Configuration of the data ingestion
@@ -20,7 +20,7 @@ class DataIngestion():
         try:
             self.database_ingestion_config = Data_ingestion_config
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
     def export_collection_as_df(self):
         """
@@ -42,7 +42,7 @@ class DataIngestion():
             logger.info("Read data from client and converted to df")
             return df
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
     
     def export_data_to_feature_store(self,dataframe: pd.DataFrame):
         try:
@@ -54,7 +54,7 @@ class DataIngestion():
             dataframe.to_csv(feature_store_file_path,index=False,header=True)
             return dataframe
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
     def train_test_split(self,dataframe : pd.DataFrame):
         try:
@@ -68,7 +68,7 @@ class DataIngestion():
             train_set.to_csv(self.database_ingestion_config.train_file_path,index=False,header=True)
             test_set.to_csv(self.database_ingestion_config.test_file_path,index=False,header=True)
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
             
             
     def initiate_data_ingestion(self):
@@ -84,5 +84,5 @@ class DataIngestion():
             )
             return Dataingestionartifact
         except Exception as e:
-            raise NetworkSecuirtyException(e,sys)
+            raise NetworkSecurityException(e,sys)
     
