@@ -13,7 +13,7 @@ import pymongo
 from Networksecurity.exception.exception import NetworkSecurityException
 from Networksecurity.logging.logger import logger
 from Networksecurity.pipeline.training_pipeline import TrainingPipeline
-from Networksecurity.consants.training_pipeline import DATA_INGESTION_COLLECTION_NAME,DATA_INGESTION_DATABASE_NAME
+from Networksecurity.constants.training_pipeline import DATA_INGESTION_COLLECTION_NAME,DATA_INGESTION_DATABASE_NAME
 
 from Networksecurity.utils.main_utils.utils import load_object
 from Networksecurity.utils.ml_utils.model.estimator import NetworkModel

@@ -8,8 +8,8 @@ from sklearn.impute import KNNImputer
 from sklearn.pipeline import Pipeline
 from Networksecurity.entity.artifacts_entity import DataValidationArtifact,DataTransformationArtifact
 from Networksecurity.entity.config_entity import DataTransformationConfig
-from Networksecurity.consants.training_pipeline import TARGET_VARIABLE
-from Networksecurity.consants.training_pipeline import DATA_TRANSFORMATION_IMPUTER_PARAMS
+from Networksecurity.constants.training_pipeline import TARGET_VARIABLE
+from Networksecurity.constants.training_pipeline import DATA_TRANSFORMATION_IMPUTER_PARAMS
 from Networksecurity.utils.main_utils.utils import save_numpy_array_data,save_object
 
 class DataTransformation:

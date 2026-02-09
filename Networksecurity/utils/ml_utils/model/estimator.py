@@ -1,4 +1,4 @@
-from Networksecurity.consants.training_pipeline import TRAINED_MODEL_NAME,SAVED_MODEL_DIR
+from Networksecurity.constants.training_pipeline import TRAINED_MODEL_NAME,SAVED_MODEL_DIR
 import os 
 import sys 
 from Networksecurity.exception.exception import NetworkSecurityException

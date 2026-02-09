@@ -1,7 +1,7 @@
 from Networksecurity.entity.artifacts_entity import DataIngestionArtifact, DataValidationArtifact
 from Networksecurity.entity.config_entity import DataValidationConfig
 from Networksecurity.exception.exception import NetworkSecurityException
-from Networksecurity.consants.training_pipeline import SCHEMA_FILE_PATH
+from Networksecurity.constants.training_pipeline import SCHEMA_FILE_PATH
 from Networksecurity.logging.logger import logger
 import sys
 import os
